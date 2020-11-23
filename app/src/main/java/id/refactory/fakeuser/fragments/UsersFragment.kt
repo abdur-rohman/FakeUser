@@ -1,22 +1,16 @@
 package id.refactory.fakeuser.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.fragment.app.Fragment
 import com.bicepstudio.customadapter.listener.OnCustomScroll
-import id.refactory.fakeuser.R
 import id.refactory.fakeuser.adapters.UserAdapter
 import id.refactory.fakeuser.api.UserClient
 import id.refactory.fakeuser.databinding.FragmentUsersBinding
-import id.refactory.fakeuser.databinding.ItemUserBinding
 import id.refactory.fakeuser.models.ResultsItem
 import id.refactory.fakeuser.models.UserResponse
 import retrofit2.Call
