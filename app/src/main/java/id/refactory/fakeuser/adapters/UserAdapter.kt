@@ -28,17 +28,6 @@ class UserAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerV
         notifyItemRangeInserted(firstIndex, list.lastIndex)
     }
 
-//    fun showLoading() {
-//        list.add(null)
-//        notifyItemInserted(list.lastIndex)
-//    }
-//
-//    fun hideLoading() {
-//        val lastIndex = list.lastIndex
-//        list.removeAt(lastIndex)
-//        notifyItemRemoved(lastIndex)
-//    }
-
     inner class LoadingViewHolder(binding: ItemLoadingBinding) :
         RecyclerView.ViewHolder(binding.root)
 

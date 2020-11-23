@@ -61,7 +61,7 @@ class UsersFragment : Fragment() {
             rvUsers.layoutManager?.let {
                 rvUsers.addOnScrollListener(object : OnCustomScroll(it, 3) {
                     override fun onLoadMore(page: Int, totalItemsCount: Int) {
-                        if (page <= 10 && list.size % 100 == 0) {
+                        if (page <= 10) {
                             loadMore()
                         }
                     }
@@ -75,6 +75,8 @@ class UsersFragment : Fragment() {
     }
 
     private fun getAllUsers() {
+        binding.pbLoading.visibility = View.VISIBLE
+
         UserClient.service.getAllUser(page = page).enqueue(object : Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
@@ -82,9 +84,10 @@ class UsersFragment : Fragment() {
                         if (page == 1) {
                             adapter.list = it.results.toMutableList()
                         } else {
-//                            adapter.hideLoading()
                             adapter.addUsers(it.results)
                         }
+
+                        binding.pbLoading.visibility = View.GONE
 
                         list.addAll(it.results)
 
@@ -94,7 +97,7 @@ class UsersFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-//                if (page > 1) adapter.hideLoading()
+                if (page > 1) binding.pbLoading.visibility = View.GONE
 
                 t.printStackTrace()
 
@@ -108,8 +111,6 @@ class UsersFragment : Fragment() {
     }
 
     private fun loadMore() {
-//        adapter.showLoading()
-
         getAllUsers()
     }
 
